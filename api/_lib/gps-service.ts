@@ -1,5 +1,5 @@
-import type { AuthIdentity, Coordinates } from './types';
-import { getSupabaseAdmin } from './supabase';
+import type { AuthIdentity, Coordinates } from './types.js';
+import { getSupabaseAdmin } from './supabase.js';
 export interface GpsEvent extends Coordinates {
   accuracyMeters?: number;
   altitudeMeters?: number;

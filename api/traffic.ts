@@ -1,6 +1,6 @@
-import { coordinatesSchema } from './_lib/schemas';
-import { parseQuery, requireMethod, sendJson, withApi } from './_lib/http';
-import { getTraffic } from './_lib/traffic-service';
+import { coordinatesSchema } from './_lib/schemas.js';
+import { parseQuery, requireMethod, sendJson, withApi } from './_lib/http.js';
+import { getTraffic } from './_lib/traffic-service.js';
 export default withApi(async (request, response) => {
   requireMethod(request, ['GET']);
   const query = parseQuery(request, coordinatesSchema);

@@ -1,7 +1,7 @@
-import { getConfig } from './config';
-import { ApiError } from './errors';
-import { retryFetch } from './retry';
-import { liveAvatarOpeningText, liveAvatarPrompt } from './liveavatar-content';
+import { getConfig } from './config.js';
+import { ApiError } from './errors.js';
+import { retryFetch } from './retry.js';
+import { liveAvatarOpeningText, liveAvatarPrompt } from './liveavatar-content.js';
 const apiBase = 'https://api.liveavatar.com';
 async function liveAvatarRequest(pathname: string, body: unknown): Promise<any> {
   const apiKey = getConfig().LIVEAVATAR_API_KEY;

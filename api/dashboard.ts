@@ -1,7 +1,7 @@
-import { authenticate } from './_lib/auth';
-import { getDashboard } from './_lib/dashboard-service';
-import { parseQuery, requireMethod, sendJson, withApi } from './_lib/http';
-import { coordinatesSchema } from './_lib/schemas';
+import { authenticate } from './_lib/auth.js';
+import { getDashboard } from './_lib/dashboard-service.js';
+import { parseQuery, requireMethod, sendJson, withApi } from './_lib/http.js';
+import { coordinatesSchema } from './_lib/schemas.js';
 export default withApi(async (request, response) => {
   requireMethod(request, ['GET']);
   const query = parseQuery(request, coordinatesSchema);

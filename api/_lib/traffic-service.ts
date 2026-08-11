@@ -1,7 +1,7 @@
-import { cachedService } from './cache';
-import { getConfig } from './config';
-import { retryFetch } from './retry';
-import type { Coordinates, ServiceEnvelope, TrafficData } from './types';
+import { cachedService } from './cache.js';
+import { getConfig } from './config.js';
+import { retryFetch } from './retry.js';
+import type { Coordinates, ServiceEnvelope, TrafficData } from './types.js';
 function congestion(current: number, freeFlow: number): TrafficData['congestionLevel'] {
   const ratio = freeFlow > 0 ? current / freeFlow : 1;
   if (ratio < 0.35) return 'severe';

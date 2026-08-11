@@ -1,4 +1,3 @@
-
 # LIA Drive - Report finale
 
 Data: 11 agosto 2026
@@ -6,7 +5,7 @@ Versione: 1.0.0
 
 ## Esito
 
-Il progetto è completo, eseguibile localmente e pronto per Vercel/Supabase. L embed LiveAvatar fornito è integrato come configurazione predefinita.
+Il progetto è completo, eseguibile localmente e pubblicato su Vercel. L'embed LiveAvatar fornito è integrato come configurazione predefinita; il provisioning Supabase è pronto e resta subordinato alla creazione autorizzata del progetto.
 
 ## Componenti consegnati
 
@@ -29,13 +28,14 @@ Il progetto è completo, eseguibile localmente e pronto per Vercel/Supabase. L e
 - Test unitari e integrazione: 7/7 superati.
 - Test E2E Playwright: 2/2 superati su Chromium desktop/mobile.
 - npm audit: 0 vulnerabilità.
-- Prova provider reale su Milano: HTTP 200, 6 news, 8 luoghi, 6 voci storiche, meteo Open-Meteo e avatar configurato.
+- Prova provider reale su Milano: HTTP 200 con luogo, traffico, meteo Open-Meteo, news, luoghi, storia e avatar configurato.
+- Smoke test produzione: homepage, `/api/health`, `/api/dashboard` e LiveAvatar rispondono HTTP 200.
 
 ## Stato provisioning cloud
 
 ### GitHub
 
-Il repository pubblico `rabbonimirko-arch/lia-drive` è stato popolato sul branch `main` tramite il connettore GitHub. Il tree remoto contiene tutti gli 86 file tracciati, verificati tramite SHA Git, nel commit `dbfc43bb136d1bd9e19f2a5ad25bb36f784af14c`. Il tag e la release GitHub restano da creare perché il connettore disponibile non espone azioni per refs tag o releases e la CLI `gh` non è installata.
+Il repository pubblico `rabbonimirko-arch/lia-drive` è stato popolato e sincronizzato sul branch `main` tramite il connettore GitHub. Il tree remoto contiene tutti i file tracciati, verificati tramite SHA Git. Il tag e la release GitHub restano da creare perché il connettore disponibile non espone azioni per refs tag o releases e la CLI `gh` non è installata.
 
 ### Supabase
 
@@ -43,7 +43,7 @@ Il connettore è autenticato, ma l unico progetto visibile è LASCIAMPISTA AI ed
 
 ### Vercel
 
-Il team mirko's projects è disponibile. Il deploy automatico ha restituito INVALID_ARGUMENT perché il workspace non è collegato a un progetto; il tentativo CLI è rimasto in attesa interattiva ed è stato interrotto dal timeout. Per completare serve creare o indicare un progetto Vercel e fornire una sessione CLI/token non interattivo.
+Il progetto Vercel `lia-drive` è stato creato nel team `mirko's projects` e pubblicato in produzione su `https://lia-drive.vercel.app`. Il deploy `dpl_HcbNKjMzdMKfbtXPsKNnMr6qKXtM` è `READY`; homepage, health API e dashboard contestuale sono state verificate con HTTP 200. L'aggiornamento ogni 15 minuti usa Supabase `pg_cron`, compatibile con il piano Vercel Hobby.
 
 ### Segreti runtime mancanti
 

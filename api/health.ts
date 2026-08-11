@@ -1,5 +1,5 @@
-import { getConfig } from './_lib/config';
-import { requireMethod, sendJson, withApi } from './_lib/http';
+import { getConfig } from './_lib/config.js';
+import { requireMethod, sendJson, withApi } from './_lib/http.js';
 export default withApi(
   async (request, response) => {
     requireMethod(request, ['GET']);

@@ -1,6 +1,6 @@
-import { cachedService } from './cache';
-import { retryFetch } from './retry';
-import type { Coordinates, ServiceEnvelope, WeatherData } from './types';
+import { cachedService } from './cache.js';
+import { retryFetch } from './retry.js';
+import type { Coordinates, ServiceEnvelope, WeatherData } from './types.js';
 const descriptions: Record<number, string> = {
   0: 'Cielo sereno',
   1: 'Prevalentemente sereno',

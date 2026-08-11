@@ -1,6 +1,6 @@
-import type { Coordinates, UserPreferences } from './types';
-import { getDashboard } from './dashboard-service';
-import { liveAvatarPrompt, liveAvatarSafety } from './liveavatar-content';
+import type { Coordinates, UserPreferences } from './types.js';
+import { getDashboard } from './dashboard-service.js';
+import { liveAvatarPrompt, liveAvatarSafety } from './liveavatar-content.js';
 
 export async function buildAiSystemContext(
   coordinates: Coordinates,

@@ -1,10 +1,10 @@
 import { createSecretKey } from 'node:crypto';
-import type { VercelRequest } from './vercel-types';
+import type { VercelRequest } from './vercel-types.js';
 import { jwtVerify } from 'jose';
-import type { AuthIdentity } from './types';
-import { ApiError } from './errors';
-import { getConfig } from './config';
-import { getSupabasePublic } from './supabase';
+import type { AuthIdentity } from './types.js';
+import { ApiError } from './errors.js';
+import { getConfig } from './config.js';
+import { getSupabasePublic } from './supabase.js';
 function bearerToken(request: VercelRequest): string | undefined {
   const header = request.headers.authorization;
   if (!header?.startsWith('Bearer ')) return undefined;

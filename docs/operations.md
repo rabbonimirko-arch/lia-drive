@@ -3,8 +3,9 @@
 ## Frequenze
 
 - Dashboard browser: ogni 15 minuti.
-- Vercel Cron: ogni 15 minuti.
+- Supabase Edge refresh tramite pg_cron: ogni 15 minuti.
 - Supabase manutenzione: ogni 15 minuti.
+- Vercel Cron: opzionale sui piani che consentono frequenze inferiori a un giorno.
 - Cache weather/traffic/news: 15 minuti.
 - Cache places: 30 minuti.
 - Reverse geocoding: 60 minuti.

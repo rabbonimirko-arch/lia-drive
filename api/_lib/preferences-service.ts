@@ -1,5 +1,5 @@
-import type { AuthIdentity, UserPreferences } from './types';
-import { getSupabaseAdmin } from './supabase';
+import type { AuthIdentity, UserPreferences } from './types.js';
+import { getSupabaseAdmin } from './supabase.js';
 export const defaultPreferences: UserPreferences = {
   language: 'it',
   units: 'metric',

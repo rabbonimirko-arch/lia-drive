@@ -33,4 +33,4 @@ Gli indici coprono query GPS per utente/tempo, scadenza cache, log recenti, sess
 
 ## Edge refresh
 
-supabase/cron_setup.sql installa pg_net e Vault e fornisce configure_lia_edge_refresh. I segreti vengono salvati in Vault e il job chiama refresh-data ogni 15 minuti. La funzione inoltra la richiesta al cron Vercel usando lo stesso CRON_SECRET.
+supabase/cron_setup.sql installa pg_net e Vault e fornisce configure_lia_edge_refresh. I segreti vengono salvati in Vault e il job chiama refresh-data ogni 15 minuti. La funzione inoltra la richiesta all endpoint Vercel /api/cron/refresh usando lo stesso CRON_SECRET.

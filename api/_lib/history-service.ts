@@ -1,6 +1,6 @@
-import { cachedService } from './cache';
-import { retryFetch } from './retry';
-import type { Coordinates, HistoryItem, ServiceEnvelope } from './types';
+import { cachedService } from './cache.js';
+import { retryFetch } from './retry.js';
+import type { Coordinates, HistoryItem, ServiceEnvelope } from './types.js';
 export async function getHistory(
   coordinates: Coordinates,
   force = false,

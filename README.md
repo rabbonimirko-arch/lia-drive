@@ -36,7 +36,7 @@ flowchart LR
   API --> OpenAI[OpenAI Chat Completions]
   API --> LiveAvatar[LiveAvatar Embed/API]
   API --> DB[(Supabase Postgres)]
-  Cron[Vercel Cron / Supabase pg_cron] --> Refresh[/api/cron/refresh]
+  Cron[Supabase pg_cron + Edge Function] --> Refresh[/api/cron/refresh]
   Refresh --> Cache
   DB --> RLS[RLS · Trigger · Views · Logs]
 ```
@@ -107,7 +107,7 @@ vercel env add CRON_SECRET production
 vercel deploy --prod
 ```
 
-vercel.json pubblica le funzioni e registra il cron */15 * * * *. Vercel invia Authorization: Bearer CRON_SECRET al cron.
+vercel.json pubblica le funzioni. Il refresh ogni 15 minuti è gestito da Supabase pg_cron tramite la Edge Function refresh-data, così funziona anche sui piani Vercel Hobby. Su Vercel Pro il medesimo endpoint può essere richiamato anche da Vercel Cron con Authorization: Bearer CRON_SECRET.
 
 ### Supabase
 

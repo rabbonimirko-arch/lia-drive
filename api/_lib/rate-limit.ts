@@ -1,6 +1,6 @@
-import type { VercelRequest } from './vercel-types';
-import { ApiError } from './errors';
-import { getSupabaseAdmin } from './supabase';
+import type { VercelRequest } from './vercel-types.js';
+import { ApiError } from './errors.js';
+import { getSupabaseAdmin } from './supabase.js';
 const buckets = new Map<string, { count: number; resetAt: number }>();
 function clientKey(request: VercelRequest): string {
   const forwarded = request.headers['x-forwarded-for'];

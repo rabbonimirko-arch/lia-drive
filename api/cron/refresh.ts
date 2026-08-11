@@ -1,10 +1,10 @@
-import { getConfig } from '../_lib/config';
-import { getDashboard } from '../_lib/dashboard-service';
-import { ApiError } from '../_lib/errors';
-import { log } from '../_lib/logger';
-import { defaultPreferences } from '../_lib/preferences-service';
-import { requireMethod, sendJson, withApi } from '../_lib/http';
-import { getSupabaseAdmin } from '../_lib/supabase';
+import { getConfig } from '../_lib/config.js';
+import { getDashboard } from '../_lib/dashboard-service.js';
+import { ApiError } from '../_lib/errors.js';
+import { log } from '../_lib/logger.js';
+import { defaultPreferences } from '../_lib/preferences-service.js';
+import { requireMethod, sendJson, withApi } from '../_lib/http.js';
+import { getSupabaseAdmin } from '../_lib/supabase.js';
 export default withApi(
   async (request, response, context) => {
     requireMethod(request, ['GET']);

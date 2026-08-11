@@ -1,5 +1,5 @@
-import type { ServiceEnvelope } from './types';
-import { getSupabaseAdmin } from './supabase';
+import type { ServiceEnvelope } from './types.js';
+import { getSupabaseAdmin } from './supabase.js';
 interface MemoryEntry {
   value: unknown;
   expiresAt: number;

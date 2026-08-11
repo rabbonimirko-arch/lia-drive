@@ -1,10 +1,10 @@
 import { randomUUID } from 'node:crypto';
-import type { VercelRequest, VercelResponse } from './vercel-types';
+import type { VercelRequest, VercelResponse } from './vercel-types.js';
 import { ZodError, type ZodType } from 'zod';
-import { getConfig } from './config';
-import { log } from './logger';
-import { enforceRateLimit } from './rate-limit';
-import { ApiError } from './errors';
+import { getConfig } from './config.js';
+import { log } from './logger.js';
+import { enforceRateLimit } from './rate-limit.js';
+import { ApiError } from './errors.js';
 export type ApiHandler = (
   request: VercelRequest,
   response: VercelResponse,

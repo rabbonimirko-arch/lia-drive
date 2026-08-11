@@ -1,7 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
-import { cachedService } from './cache';
-import { retryFetch } from './retry';
-import type { NewsItem, ServiceEnvelope } from './types';
+import { cachedService } from './cache.js';
+import { retryFetch } from './retry.js';
+import type { NewsItem, ServiceEnvelope } from './types.js';
 const parser = new XMLParser({ ignoreAttributes: false });
 function asArray<T>(value: T | T[] | undefined): T[] {
   if (!value) return [];

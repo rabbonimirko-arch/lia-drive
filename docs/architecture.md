@@ -7,7 +7,7 @@
 - Persistenza: Supabase Postgres con service role solo lato server e RLS per accesso utente.
 - AI: /api/chat/completions costruisce un system context aggiornato prima di chiamare OpenAI.
 - Avatar: iframe LiveAvatar già configurato; API opzionale per nuovi embed e contesti.
-- Scheduling: Vercel Cron richiama il refresh; Supabase pg_cron gestisce manutenzione e può invocare l Edge Function.
+- Scheduling: Supabase pg_cron gestisce manutenzione e richiama la Edge Function ogni 15 minuti; Vercel Cron è un canale opzionale sui piani compatibili.
 
 ```mermaid
 sequenceDiagram

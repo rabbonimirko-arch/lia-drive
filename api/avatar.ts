@@ -1,12 +1,12 @@
 import { z } from 'zod';
-import { authenticate, requireAdmin } from './_lib/auth';
-import { getConfig } from './_lib/config';
+import { authenticate, requireAdmin } from './_lib/auth.js';
+import { getConfig } from './_lib/config.js';
 import {
   createAvatarEmbed,
   getAvatarConfiguration,
   provisionAvatarContext,
-} from './_lib/liveavatar-service';
-import { parseBody, requireMethod, sendJson, withApi } from './_lib/http';
+} from './_lib/liveavatar-service.js';
+import { parseBody, requireMethod, sendJson, withApi } from './_lib/http.js';
 const bodySchema = z.discriminatedUnion('action', [
   z.object({
     action: z.literal('embed'),

@@ -1,12 +1,12 @@
 import OpenAI from 'openai';
-import { authenticate } from '../_lib/auth';
-import { buildAiSystemContext } from '../_lib/ai-context';
-import { getConfig } from '../_lib/config';
-import { ApiError } from '../_lib/errors';
-import { parseBody, requireMethod, sendJson, withApi } from '../_lib/http';
-import { chatBodySchema, preferencesSchema } from '../_lib/schemas';
-import { defaultPreferences } from '../_lib/preferences-service';
-function hasGatewayAccess(request: import('../_lib/vercel-types').VercelRequest): boolean {
+import { authenticate } from '../_lib/auth.js';
+import { buildAiSystemContext } from '../_lib/ai-context.js';
+import { getConfig } from '../_lib/config.js';
+import { ApiError } from '../_lib/errors.js';
+import { parseBody, requireMethod, sendJson, withApi } from '../_lib/http.js';
+import { chatBodySchema, preferencesSchema } from '../_lib/schemas.js';
+import { defaultPreferences } from '../_lib/preferences-service.js';
+function hasGatewayAccess(request: import('../_lib/vercel-types.js').VercelRequest): boolean {
   const secret = getConfig().AI_GATEWAY_SECRET;
   if (!secret) return true;
   const bearer = request.headers.authorization?.replace(/^Bearers+/i, '');

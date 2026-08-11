@@ -1,12 +1,12 @@
-import type { AuthIdentity, Coordinates, UserPreferences } from './types';
-import { getTraffic } from './traffic-service';
-import { getWeather } from './weather-service';
-import { getNearbyPlaces, reverseGeocode } from './place-service';
-import { getNews } from './news-service';
-import { getHistory } from './history-service';
-import { getPreferences } from './preferences-service';
-import { getAvatarConfiguration } from './liveavatar-service';
-import { getSupabaseAdmin } from './supabase';
+import type { AuthIdentity, Coordinates, UserPreferences } from './types.js';
+import { getTraffic } from './traffic-service.js';
+import { getWeather } from './weather-service.js';
+import { getNearbyPlaces, reverseGeocode } from './place-service.js';
+import { getNews } from './news-service.js';
+import { getHistory } from './history-service.js';
+import { getPreferences } from './preferences-service.js';
+import { getAvatarConfiguration } from './liveavatar-service.js';
+import { getSupabaseAdmin } from './supabase.js';
 export async function getDashboard(
   coordinates: Coordinates,
   identity: AuthIdentity | null,

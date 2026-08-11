@@ -1,8 +1,8 @@
-import { authenticate } from './_lib/auth';
-import { parseBody, requireMethod, sendJson, withApi } from './_lib/http';
-import { preferencesSchema } from './_lib/schemas';
-import { getPreferences, savePreferences } from './_lib/preferences-service';
-import { getSupabaseAdmin } from './_lib/supabase';
+import { authenticate } from './_lib/auth.js';
+import { parseBody, requireMethod, sendJson, withApi } from './_lib/http.js';
+import { preferencesSchema } from './_lib/schemas.js';
+import { getPreferences, savePreferences } from './_lib/preferences-service.js';
+import { getSupabaseAdmin } from './_lib/supabase.js';
 export default withApi(
   async (request, response) => {
     requireMethod(request, ['GET', 'PUT']);

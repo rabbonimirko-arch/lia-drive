@@ -1,9 +1,9 @@
-import { authenticate } from './_lib/auth';
-import { ApiError } from './_lib/errors';
-import { parseBody, requireMethod, sendJson, withApi } from './_lib/http';
-import { gpsBodySchema } from './_lib/schemas';
-import { recordGps } from './_lib/gps-service';
-import { getSupabaseAdmin } from './_lib/supabase';
+import { authenticate } from './_lib/auth.js';
+import { ApiError } from './_lib/errors.js';
+import { parseBody, requireMethod, sendJson, withApi } from './_lib/http.js';
+import { gpsBodySchema } from './_lib/schemas.js';
+import { recordGps } from './_lib/gps-service.js';
+import { getSupabaseAdmin } from './_lib/supabase.js';
 export default withApi(
   async (request, response) => {
     requireMethod(request, ['GET', 'POST']);

@@ -1,6 +1,6 @@
-import { cachedService } from './cache';
-import { retryFetch } from './retry';
-import type { Coordinates, PlaceData, ServiceEnvelope } from './types';
+import { cachedService } from './cache.js';
+import { retryFetch } from './retry.js';
+import type { Coordinates, PlaceData, ServiceEnvelope } from './types.js';
 const headers = { 'User-Agent': 'LIA-Drive/1.0 (travel-assistant)' };
 export async function reverseGeocode(
   coordinates: Coordinates,
