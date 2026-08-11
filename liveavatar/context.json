@@ -1,0 +1,11 @@
+{
+  "name": "LIA Drive - Contesto viaggio",
+  "opening_text": "Ciao, sono LIA. Posso aggiornarti su traffico, meteo, notizie e storia del luogo in cui ti trovi.",
+  "knowledge_files": ["knowledge.md"],
+  "prompt_file": "prompt.md",
+  "safety_file": "safety.md",
+  "embed_url": "https://embed.liveavatar.com/v1/1d4a2b6c-8e2f-4206-9e52-bc5277377281?9?background=000000",
+  "default_language": "it",
+  "max_session_duration_seconds": 900,
+  "sandbox": true
+}

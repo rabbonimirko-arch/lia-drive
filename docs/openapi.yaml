@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: LIA Drive API
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:3000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Coordinates:
+      type: object
+      required: [lat, lon]
+      properties:
+        lat: { type: number, minimum: -90, maximum: 90 }
+        lon: { type: number, minimum: -180, maximum: 180 }
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code: { type: string }
+            message: { type: string }
+        requestId: { type: string, format: uuid }
+paths:
+  /api/health:
+    get:
+      responses:
+        '200': { description: Runtime healthy }
+  /api/traffic:
+    get:
+      parameters:
+        - { in: query, name: lat, required: true, schema: { type: number } }
+        - { in: query, name: lon, required: true, schema: { type: number } }
+      responses:
+        '200': { description: Traffic envelope }
+  /api/weather:
+    get:
+      parameters:
+        - { in: query, name: lat, required: true, schema: { type: number } }
+        - { in: query, name: lon, required: true, schema: { type: number } }
+      responses:
+        '200': { description: Weather envelope }
+  /api/news:
+    get:
+      parameters:
+        - { in: query, name: lat, required: true, schema: { type: number } }
+        - { in: query, name: lon, required: true, schema: { type: number } }
+        - { in: query, name: topics, schema: { type: string } }
+      responses:
+        '200': { description: News envelope }
+  /api/places:
+    get:
+      parameters:
+        - { in: query, name: lat, required: true, schema: { type: number } }
+        - { in: query, name: lon, required: true, schema: { type: number } }
+      responses:
+        '200': { description: Current and nearby places }
+  /api/history:
+    get:
+      parameters:
+        - { in: query, name: lat, required: true, schema: { type: number } }
+        - { in: query, name: lon, required: true, schema: { type: number } }
+      responses:
+        '200': { description: Nearby history }
+  /api/preferences:
+    get:
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Preferences or anonymous defaults }
+    put:
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Updated preferences }
+  /api/gps:
+    get:
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Recent GPS events }
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Coordinates' }
+      responses:
+        '202': { description: GPS event accepted }
+  /api/dashboard:
+    get:
+      parameters:
+        - { in: query, name: lat, required: true, schema: { type: number } }
+        - { in: query, name: lon, required: true, schema: { type: number } }
+      responses:
+        '200': { description: Aggregated dashboard context }
+  /api/avatar:
+    get:
+      responses:
+        '200': { description: Sanitized avatar configuration }
+    post:
+      responses:
+        '201': { description: Embed or context created }
+  /api/chat/completions:
+    post:
+      responses:
+        '200': { description: OpenAI Chat Completion }
+  /api/cron/refresh:
+    get:
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Refresh completed }

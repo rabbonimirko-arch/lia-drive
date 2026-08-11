@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <meta
+      name="description"
+      content="LIA Drive: traffico, meteo, notizie, luoghi, storia e avatar AI in un'unica dashboard."
+    />
+    <title>LIA Drive · Intelligent Road Companion</title>
+    <link rel="stylesheet" href="/assets/app.css" />
+    <script type="module" src="/assets/app.js"></script>
+  </head>
+  <body class="min-h-screen bg-ink text-white antialiased">
+    <div class="fixed inset-0 -z-10 bg-grid bg-[size:44px_44px] opacity-70"></div>
+    <div
+      class="fixed left-1/2 top-[-20rem] -z-10 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-cyan/10 blur-[120px]"
+    ></div>
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-ink/85 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <a href="#top" class="flex items-center gap-3" aria-label="LIA Drive home">
+          <span
+            class="grid h-10 w-10 place-items-center rounded-2xl border border-cyan/30 bg-cyan/10 shadow-glow"
+            ><span class="h-3 w-3 rounded-full bg-cyan shadow-[0_0_18px_#4de3ff]"></span
+          ></span>
+          <span
+            ><strong class="block text-sm tracking-[0.28em]">LIA DRIVE</strong
+            ><span class="text-xs text-mist">intelligent road companion</span></span
+          >
+        </a>
+        <div class="flex items-center gap-2">
+          <span
+            id="syncStatus"
+            class="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-mist sm:flex"
+            ><span class="h-2 w-2 rounded-full bg-lime"></span> pronto</span
+          >
+          <button
+            id="preferencesButton"
+            class="icon-button"
+            type="button"
+            aria-label="Apri preferenze"
+          >
+            ⚙
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+      <section
+        class="hero-panel overflow-hidden rounded-[2rem] border border-white/10 p-6 shadow-2xl sm:p-9"
+      >
+        <div class="grid gap-8 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
+          <div>
+            <p class="eyebrow">CONTESTO IN TEMPO REALE</p>
+            <h1
+              class="mt-4 max-w-3xl text-4xl font-semibold leading-[1.04] tracking-tight sm:text-6xl"
+            >
+              La strada, raccontata <span class="text-cyan">mentre la vivi.</span>
+            </h1>
+            <p class="mt-5 max-w-2xl text-base leading-7 text-mist sm:text-lg">
+              Traffico, meteo, notizie, luoghi e memoria storica si sincronizzano sulla tua
+              posizione. LIA organizza il contesto e mantiene sempre visibile la qualità della
+              fonte.
+            </p>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <button id="locateButton" class="primary-button" type="button">
+                <span aria-hidden="true">◎</span> Usa la mia posizione
+              </button>
+              <button id="refreshButton" class="secondary-button" type="button">
+                <span aria-hidden="true">↻</span> Aggiorna ora
+              </button>
+            </div>
+          </div>
+          <div class="rounded-3xl border border-white/10 bg-black/20 p-5">
+            <p class="text-xs uppercase tracking-[0.22em] text-mist">Posizione attiva</p>
+            <p id="locationName" class="mt-3 text-xl font-medium">Roma, Italia</p>
+            <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+              <div class="metric">
+                <span>Latitudine</span><strong id="latitudeValue">41.9028</strong>
+              </div>
+              <div class="metric">
+                <span>Longitudine</span><strong id="longitudeValue">12.4964</strong>
+              </div>
+            </div>
+            <p id="lastUpdate" class="mt-4 text-xs text-mist">In attesa del primo aggiornamento</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-6 grid gap-4 md:grid-cols-3">
+        <article class="data-card" id="trafficCard">
+          <div class="card-heading">
+            <span class="card-icon bg-coral/10 text-coral">↝</span>
+            <div>
+              <p>Traffico</p>
+              <span id="trafficSource">caricamento</span>
+            </div>
+          </div>
+          <div class="mt-6 flex items-end justify-between">
+            <div>
+              <strong id="trafficLevel" class="text-3xl">—</strong>
+              <p id="trafficRoad" class="mt-1 text-sm text-mist">Analisi del tratto vicino</p>
+            </div>
+            <div class="text-right">
+              <strong id="trafficSpeed" class="text-2xl">—</strong>
+              <p class="text-xs text-mist">km/h</p>
+            </div>
+          </div>
+          <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
+            <div
+              id="trafficBar"
+              class="h-full w-0 rounded-full bg-coral transition-all duration-700"
+            ></div>
+          </div>
+        </article>
+        <article class="data-card" id="weatherCard">
+          <div class="card-heading">
+            <span class="card-icon bg-cyan/10 text-cyan">☼</span>
+            <div>
+              <p>Meteo</p>
+              <span id="weatherSource">caricamento</span>
+            </div>
+          </div>
+          <div class="mt-6 flex items-end justify-between">
+            <div>
+              <strong id="temperature" class="text-4xl">—</strong>
+              <p id="weatherDescription" class="mt-1 text-sm text-mist">Condizioni correnti</p>
+            </div>
+            <div class="space-y-2 text-right text-sm">
+              <p><span class="text-mist">vento</span> <strong id="windSpeed">—</strong></p>
+              <p><span class="text-mist">umidità</span> <strong id="humidity">—</strong></p>
+            </div>
+          </div>
+        </article>
+        <article class="data-card">
+          <div class="card-heading">
+            <span class="card-icon bg-lime/10 text-lime">⌖</span>
+            <div>
+              <p>GPS</p>
+              <span>dispositivo</span>
+            </div>
+          </div>
+          <div class="mt-6">
+            <strong id="gpsAccuracy" class="text-3xl">Manuale</strong>
+            <p id="gpsMessage" class="mt-2 text-sm leading-6 text-mist">
+              Attiva la posizione per personalizzare tutto il contesto.
+            </p>
+          </div>
+          <div class="mt-5 flex items-center gap-2 text-xs text-mist">
+            <span id="gpsDot" class="h-2 w-2 rounded-full bg-amber"></span
+            ><span id="gpsState">coordinate predefinite</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="mt-6 grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
+        <div class="space-y-6">
+          <article class="section-panel">
+            <div class="section-title">
+              <div>
+                <p class="eyebrow">SEGNALI DAL TERRITORIO</p>
+                <h2>Notizie vicine</h2>
+              </div>
+              <span id="newsCount" class="counter">0</span>
+            </div>
+            <div id="newsList" class="mt-5 divide-y divide-white/10">
+              <div class="skeleton h-20"></div>
+              <div class="skeleton mt-3 h-20"></div>
+            </div>
+          </article>
+          <div class="grid gap-6 md:grid-cols-2">
+            <article class="section-panel">
+              <div class="section-title">
+                <div>
+                  <p class="eyebrow">ESPLORA</p>
+                  <h2>Luoghi intorno</h2>
+                </div>
+              </div>
+              <div id="placesList" class="mt-5 space-y-3"><div class="skeleton h-16"></div></div>
+            </article>
+            <article class="section-panel">
+              <div class="section-title">
+                <div>
+                  <p class="eyebrow">MEMORIA</p>
+                  <h2>Storia locale</h2>
+                </div>
+              </div>
+              <div id="historyList" class="mt-5 space-y-3"><div class="skeleton h-16"></div></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <article class="section-panel overflow-hidden p-0">
+            <div class="border-b border-white/10 p-5">
+              <div class="section-title">
+                <div>
+                  <p class="eyebrow">LIVEAVATAR</p>
+                  <h2>Parla con LIA</h2>
+                </div>
+                <span class="status-pill"
+                  ><span class="h-2 w-2 rounded-full bg-lime"></span> live</span
+                >
+              </div>
+            </div>
+            <div class="aspect-video bg-black">
+              <iframe
+                id="avatarFrame"
+                class="h-full w-full"
+                src="https://embed.liveavatar.com/v1/1d4a2b6c-8e2f-4206-9e52-bc5277377281?9?background=000000"
+                allow="microphone; autoplay"
+                title="LIA LiveAvatar"
+              ></iframe>
+            </div>
+          </article>
+          <article class="section-panel">
+            <div class="section-title">
+              <div>
+                <p class="eyebrow">OPENAI COMPATIBLE</p>
+                <h2>Chiedi a LIA</h2>
+              </div>
+            </div>
+            <div
+              id="chatMessages"
+              class="mt-5 max-h-72 space-y-3 overflow-y-auto rounded-2xl border border-white/10 bg-black/20 p-4"
+              aria-live="polite"
+            >
+              <p class="chat-assistant">
+                Ciao. Posso sintetizzare il contesto corrente e aiutarti a orientarti.
+              </p>
+            </div>
+            <form id="chatForm" class="mt-3 flex gap-2">
+              <label class="sr-only" for="chatInput">Messaggio</label
+              ><input
+                id="chatInput"
+                class="text-input"
+                maxlength="1000"
+                placeholder="Cosa c'è di interessante qui vicino?"
+                autocomplete="off"
+              /><button class="primary-button shrink-0 px-4" type="submit" aria-label="Invia">
+                →
+              </button>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section class="mt-6 grid gap-6 lg:grid-cols-2">
+        <article class="section-panel">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">OSSERVABILITÀ</p>
+              <h2>Stato servizi</h2>
+            </div>
+          </div>
+          <div id="servicesList" class="mt-5 grid gap-3 sm:grid-cols-2"></div>
+        </article>
+        <article class="section-panel">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">LOG OPERATIVI</p>
+              <h2>Attività recente</h2>
+            </div>
+          </div>
+          <div id="logsList" class="mt-5 space-y-2 font-mono text-xs text-mist">
+            <p>Nessun evento persistito. Collega Supabase per lo storico centralizzato.</p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <dialog
+      id="preferencesDialog"
+      class="w-[min(92vw,34rem)] rounded-[2rem] border border-white/10 bg-panel p-0 text-white shadow-2xl backdrop:bg-black/70"
+    >
+      <form id="preferencesForm" method="dialog" class="p-6 sm:p-8">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="eyebrow">PERSONALIZZAZIONE</p>
+            <h2 class="mt-2 text-2xl font-semibold">Preferenze LIA</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Chiudi">×</button>
+        </div>
+        <label class="field-label mt-6"
+          >Argomenti notizie<input
+            id="newsTopicsInput"
+            class="text-input mt-2"
+            value="mobilità, territorio" /></label
+        ><label class="field-label mt-4"
+          >Interessi<input
+            id="interestsInput"
+            class="text-input mt-2"
+            value="viaggi, storia, cultura" /></label
+        ><label
+          class="mt-5 flex items-center justify-between rounded-2xl border border-white/10 p-4"
+          ><span
+            ><strong class="block text-sm">Modalità accessibile</strong
+            ><span class="text-xs text-mist">Contrasto e dimensioni maggiori</span></span
+          ><input id="accessibilityInput" type="checkbox" class="h-5 w-5 accent-cyan"
+        /></label>
+        <div class="mt-6 flex justify-end gap-3">
+          <button class="secondary-button" value="cancel">Annulla</button
+          ><button id="savePreferencesButton" class="primary-button" value="default">Salva</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div
+      id="toast"
+      class="pointer-events-none fixed bottom-5 left-1/2 z-50 -translate-x-1/2 translate-y-6 rounded-full border border-white/10 bg-panel px-4 py-3 text-sm opacity-0 shadow-xl transition-all"
+    ></div>
+  </body>
+</html>
