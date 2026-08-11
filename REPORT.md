@@ -1,6 +1,7 @@
+
 # LIA Drive - Report finale
 
-Data: 4 agosto 2026
+Data: 11 agosto 2026
 Versione: 1.0.0
 
 ## Esito
@@ -34,7 +35,7 @@ Il progetto è completo, eseguibile localmente e pronto per Vercel/Supabase. L e
 
 ### GitHub
 
-Il connettore è autenticato come rabbonimirko-arch, ma gli strumenti disponibili non includono la creazione di repository e la CLI gh non è installata. È stato quindi preparato il repository Git locale con commit iniziale e tag v1.0.0. Per pubblicare servono un repository GitHub vuoto oppure la disponibilità della CLI gh autenticata.
+Il repository pubblico `rabbonimirko-arch/lia-drive` è stato popolato sul branch `main` tramite il connettore GitHub. Il tree remoto contiene tutti gli 86 file tracciati, verificati tramite SHA Git, nel commit `dbfc43bb136d1bd9e19f2a5ad25bb36f784af14c`. Il tag e la release GitHub restano da creare perché il connettore disponibile non espone azioni per refs tag o releases e la CLI `gh` non è installata.
 
 ### Supabase
 
