@@ -1,6 +1,6 @@
 # LIA Drive
 
-LIA Drive Ã¨ un assistente di viaggio contestuale pronto per Vercel, Supabase, OpenAI e LiveAvatar. La dashboard combina traffico, meteo, notizie locali, luoghi, storia, GPS, preferenze, log e stato servizi. Funziona localmente anche senza credenziali cloud: i provider pubblici restano attivi, il traffico usa una stima dichiarata e le integrazioni protette segnalano esattamente la configurazione mancante.
+LIA Drive è un assistente di viaggio contestuale pronto per Vercel, Supabase, OpenAI e LiveAvatar. La dashboard combina traffico, meteo, notizie locali, luoghi, storia, GPS, preferenze, log e stato servizi. Funziona localmente anche senza credenziali cloud: i provider pubblici restano attivi, il traffico usa una stima dichiarata e le integrazioni protette segnalano esattamente la configurazione mancante.
 
 ## Funzioni
 
@@ -32,13 +32,13 @@ Aprire http://127.0.0.1:3000. La configurazione minima non richiede chiavi. Per 
 flowchart LR
   Browser[Dashboard HTML + Tailwind + TypeScript] --> API[Vercel Functions]
   API --> Cache[Cache memoria + Supabase]
-  API --> Providers[Open-Meteo Â· OSM Â· Wikipedia Â· Google News Â· TomTom]
+  API --> Providers[Open-Meteo · OSM · Wikipedia · Google News · TomTom]
   API --> OpenAI[OpenAI Chat Completions]
   API --> LiveAvatar[LiveAvatar Embed/API]
   API --> DB[(Supabase Postgres)]
   Cron[Vercel Cron / Supabase pg_cron] --> Refresh[/api/cron/refresh]
   Refresh --> Cache
-  DB --> RLS[RLS Â· Trigger Â· Views Â· Logs]
+  DB --> RLS[RLS · Trigger · Views · Logs]
 ```
 
 Dettagli: [docs/architecture.md](docs/architecture.md).
@@ -67,10 +67,10 @@ Le API geografiche accettano lat e lon. Specifica completa: [docs/api.md](docs/a
 | Variabile                 | Necessaria            | Uso                                                     |
 | ------------------------- | --------------------- | ------------------------------------------------------- |
 | APP_BASE_URL              | deploy                | URL pubblica applicazione                               |
-| ALLOWED_ORIGINS           | sÃ¬ in produzione      | Lista CORS separata da virgole                          |
-| CRON_SECRET               | sÃ¬ in produzione      | Protezione cron Vercel/Supabase                         |
+| ALLOWED_ORIGINS           | sì in produzione      | Lista CORS separata da virgole                          |
+| CRON_SECRET               | sì in produzione      | Protezione cron Vercel/Supabase                         |
 | ADMIN_API_KEY             | per provisioning      | Protegge creazione contesto LiveAvatar                  |
-| JWT_SECRET                | auth locale opzionale | Verifica JWT HS256 quando Supabase Auth non Ã¨ usato     |
+| JWT_SECRET                | auth locale opzionale | Verifica JWT HS256 quando Supabase Auth non è usato     |
 | SUPABASE_URL              | per database          | URL progetto Supabase                                   |
 | SUPABASE_PUBLISHABLE_KEY  | per auth              | Validazione token utente                                |
 | SUPABASE_SERVICE_ROLE_KEY | solo server           | Cache, log, GPS e rate limit                            |
@@ -81,7 +81,7 @@ Le API geografiche accettano lat e lon. Specifica completa: [docs/api.md](docs/a
 | LIVEAVATAR_AVATAR_ID      | embed dinamico        | Avatar LiveAvatar                                       |
 | LIVEAVATAR_CONTEXT_ID     | opzionale             | Contesto LiveAvatar                                     |
 | LIVEAVATAR_VOICE_ID       | opzionale             | Voce LiveAvatar                                         |
-| LIVEAVATAR_EMBED_URL      | giÃ  configurata       | Embed fornito per LIA                                   |
+| LIVEAVATAR_EMBED_URL      | già configurata       | Embed fornito per LIA                                   |
 | TOMTOM_API_KEY            | opzionale             | Traffico live; senza usa stima etichettata              |
 
 Non esporre mai service role, OpenAI, LiveAvatar, cron o admin key nel browser.
@@ -122,7 +122,7 @@ Guida completa: [docs/deploy.md](docs/deploy.md).
 
 ## LiveAvatar
 
-L'embed predefinito Ã¨ quello fornito per LIA ed Ã¨ giÃ  presente in dashboard, .env.example, liveavatar/context.json e liveavatar/embed.html. POST /api/avatar con action=embed crea un nuovo embed se LIVEAVATAR_API_KEY e LIVEAVATAR_AVATAR_ID sono configurati. action=provision-context crea il contesto e richiede X-Admin-Key.
+L'embed predefinito è quello fornito per LIA ed è già presente in dashboard, .env.example, liveavatar/context.json e liveavatar/embed.html. POST /api/avatar con action=embed crea un nuovo embed se LIVEAVATAR_API_KEY e LIVEAVATAR_AVATAR_ID sono configurati. action=provision-context crea il contesto e richiede X-Admin-Key.
 
 ## Sicurezza
 
@@ -134,7 +134,7 @@ L'embed predefinito Ã¨ quello fornito per LIA ed Ã¨ giÃ  presente in dashb
 
 Dettagli: [docs/security.md](docs/security.md).
 
-## QualitÃ 
+## Qualità
 
 ```bash
 npm run format:check
